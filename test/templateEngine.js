@@ -24,5 +24,20 @@ QUnit.module("Тестируем функцию templateEngine", function() {
 
         assert.equal(result, "Город: Москва, Улица: 2-я Бауманская");
     });
-});
 
+    QUnit.test("Работает правильно с пустым шаблоном", function(assert) {
+        const template = "The question of life, the universe, and everything: {{}}";
+        const data = { answer: 42 };
+        const result = templateEngine(template, data);
+
+        assert.equal(result, "The question of life, the universe, and everything: "); // Переменной нет, поэтому пустая строка
+    });
+
+    QUnit.test("Игнорирует незакрытые скобки", function(assert) {
+        const template = "The *answer* to life, the universe, and everything: {{ answer {{ answer }}";
+        const data = { answer: 42 };
+        const result = templateEngine(template, data);
+
+        assert.equal(result, "The *answer* to life, the universe, and everything: {{ answer 42");
+    });
+});
