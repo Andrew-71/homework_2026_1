@@ -40,4 +40,20 @@ QUnit.module("Тестируем функцию templateEngine", function() {
 
         assert.equal(result, "The *answer* to life, the universe, and everything: {{ answer 42");
     });
+
+    QUnit.test("Работает с неправильным типом объекта данных", function(assert) {
+        const template = "To me, time is a {{place}}";
+        const data = "wait for me, 3:26";
+        const result = templateEngine(template, data);
+
+        assert.equal(result, "To me, time is a ");
+    });
+
+    QUnit.test("Работает с неправильным типом шаблона", function(assert) {
+        const template = 2001;
+        const data = "Dave, my mind is going, there is no question about it.";
+        const result = templateEngine(template, data);
+
+        assert.equal(result, "");
+    });
 });
