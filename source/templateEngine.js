@@ -25,8 +25,6 @@ const TEMPLATE_REGEX = /{{\s*([^{}\s]*)\s*}}/g;
  * templateEngine(template, data);
  * // returns "Hello, World!"
  */
-function templateEngine(template, data) {
-    return template.replaceAll(TEMPLATE_REGEX, (_, capture) => {
-        return capture.split(".").reduce((obj, key) => obj?.[key], data) ?? "";
-    });
-}
+const templateEngine = (template, data) =>
+    template.replaceAll(TEMPLATE_REGEX, (_, capture) => 
+        capture.split(".").reduce((obj, key) => obj?.[key], data) ?? "");
