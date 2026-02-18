@@ -56,4 +56,12 @@ QUnit.module("Тестируем функцию templateEngine", function() {
 
         assert.equal(result, "");
     });
+
+    QUnit.test("Работает со строками, созданными через new String", function(assert) {
+        const template = new String("I like Joy {{ band }}");
+        const data = {band: "Division"};
+        const result = templateEngine(template, data);
+
+        assert.equal(result, "Joy Division");
+    });
 });

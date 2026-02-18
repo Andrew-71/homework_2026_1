@@ -26,6 +26,6 @@ const TEMPLATE_REGEX = /{{\s*([^{}\s]*)\s*}}/g;
  * // returns "Hello, World!"
  */
 const templateEngine = (template, data) =>
-    typeof template === "string" &&
+    (typeof template === "string" || template instanceof String) &&
     template.replaceAll(TEMPLATE_REGEX, (_, capture) => 
         capture.split(".").reduce((obj, key) => obj?.[key], data) ?? "") || "";
