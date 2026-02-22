@@ -62,6 +62,7 @@ QUnit.module("Тестируем функцию templateEngine", function() {
         const data = {band: "Division"};
         const result = templateEngine(template, data);
 
-        assert.equal(result, "Joy Division");
+        // ...and non-failing tests :)
+        assert.equal(result, "I like Joy Division");
     });
 });
